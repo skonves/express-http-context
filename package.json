@@ -1,0 +1,25 @@
+{
+  "name": "express-http-context",
+  "version": "0.1.0",
+  "description": "Get and set request-scoped context anywhere",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skonves/express-http-context.git"
+  },
+  "keywords": [
+    "express",
+    "http",
+    "request",
+    "context"
+  ],
+  "author": "Steve Konves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skonves/express-http-context/issues"
+  },
+  "homepage": "https://github.com/skonves/express-http-context#readme"
+}
