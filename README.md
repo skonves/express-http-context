@@ -1,5 +1,5 @@
 # Express HTTP Context
-Get and set request-scoped context anywhere.  This is just an unopinionated, idiomatic ExpressJS imlementation of [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage).  It's a great place to store user state, claims from a JWT, request/correlation IDs, and any other request-scoped data.
+Get and set request-scoped context anywhere.  This is just an unopinionated, idiomatic ExpressJS implementation of [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage).  It's a great place to store user state, claims from a JWT, request/correlation IDs, and any other request-scoped data.
 
 ## How to use it
 
@@ -17,7 +17,7 @@ app.use(httpContext.middleware);
 // all code from here on has access to the same context for each request
 ```
 
-Now you can set values based on the incomming request:
+Set values based on the incomming request:
 
 ``` js
 // Example authorization middleware
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 });
 ```
 
-And then get them even from code that doesn't have access to the epxress `req` object:
+Get them from code that doesn't have access to the express `req` object:
 
 ``` js
 var httpContext = require('express-http-context');
