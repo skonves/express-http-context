@@ -4,6 +4,7 @@
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
   "scripts": {
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha index.js -R ./tests --coverage && istanbul check-coverage --statement 100 --branch 100 --function 100 --line 100",
     "test": "mocha ./tests"
   },
   "repository": {
@@ -28,6 +29,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "express": "^4.15.2",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "supertest": "^3.0.0"
   }
