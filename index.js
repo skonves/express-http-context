@@ -11,10 +11,14 @@ module.exports = {
 	},
 	get: function (key) {
 		const ns = cls.getNamespace(nsid);
-		return ns.get(key);
+		if (ns.active) {
+			return ns.get(key);
+		}
 	},
 	set: function (key, value) {
 		const ns = cls.getNamespace(nsid);
-		return ns.set(key, value);
+		if (ns.active) {
+			return ns.set(key, value);
+		}
 	}
 }
