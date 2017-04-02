@@ -1,3 +1,4 @@
+[![travis](https://img.shields.io/travis/skonves/express-http-context.svg)](https://travis-ci.org/skonves/express-http-context)
 [![npm](https://img.shields.io/npm/v/express-http-context.svg)](https://www.npmjs.com/package/express-http-context)
 [![npm](https://img.shields.io/npm/dm/express-http-context.svg)](https://www.npmjs.com/package/express-http-context)
 
