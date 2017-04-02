@@ -7,6 +7,18 @@ const supertest = require('supertest');
 const httpContext = require('../index');
 
 describe('express-http-context', function () {
+	it('does not store or return context outside of request', function () {
+		// ARRANGE
+		const key = 'key';
+
+		// ACT
+		httpContext.set(key, 'value');
+		const result = httpContext.get(key);
+
+		// ASSERT
+		assert.notOk(result);
+	});
+
 	it('maintains unique value across concurrent requests', function (done) {
 		// ARRANGE
 		const app = express();
@@ -70,17 +82,5 @@ describe('express-http-context', function () {
 			assert.equal(res.body.typeOfValueFromContext, 'undefined');
 			done();
 		});
-	});
-
-	it('does not store or return context outside of request', function () {
-		// ARRANGE
-		const key = 'key';
-
-		// ACT
-		httpContext.set(key, 'value');
-		const result = httpContext.get(key);
-
-		// ASSERT
-		assert.notOk(result);
 	});
 });
