@@ -45,6 +45,33 @@ describe('express-http-context', function () {
 		});
 	});
 
+	it('returns undefined when key is not found', function (done) {
+		// ARRANGE
+		const app = express();
+
+		app.use(httpContext.middleware);
+
+		app.get('/test', (req, res) => {
+			httpContext.set('existing-key', 'some value');
+
+			setTimeout(() => {
+				const valueFromContext = httpContext.get('missing-key');
+				res.status(200).json({
+					typeOfValueFromContext: typeof (valueFromContext)
+				});
+			}, 5);
+		});
+
+		const sut = supertest(app);
+
+		// ACT
+		sut.get('/test').end((err, res) => {
+			// ASSERT
+			assert.equal(res.body.typeOfValueFromContext, 'undefined');
+			done();
+		});
+	});
+
 	it('does not store or return context outside of request', function () {
 		// ARRANGE
 		const key = 'key';
