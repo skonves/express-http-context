@@ -16,7 +16,7 @@ function middleware(req, res, next) {
  */
 function get(key) {
 	const ns = cls.getNamespace(nsid);
-	if (ns.active) {
+	if (ns && ns.active) {
 		return ns.get(key);
 	}
 }
@@ -28,7 +28,7 @@ function get(key) {
  */
 function set(key, value) {
 	const ns = cls.getNamespace(nsid);
-	if (ns.active) {
+	if (ns && ns.active) {
 		return ns.set(key, value);
 	}
 }
