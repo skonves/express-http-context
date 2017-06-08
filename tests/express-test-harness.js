@@ -83,4 +83,51 @@ describe('express-http-context', function () {
 			done();
 		});
 	});
+
+	it('maintains context when using promises', function (done) {
+		// ARRANGE
+		const app = express();
+
+		app.use(httpContext.middleware);
+
+		const delayWithPromise = delay => new Promise((resolve, reject) => setTimeout(resolve, delay));
+
+		app.get('/test', (req, res) => {
+			const delay = new Number(req.query.delay);
+			const valueFromRequest = req.query.value;
+
+			httpContext.set('value', valueFromRequest);
+
+			delayWithPromise(delay)
+				.then(() => {
+					return delayWithPromise(delay);
+				}).then(() => {
+					const valueFromContext = httpContext.get('value');
+					res.status(200).json({
+						value: valueFromContext
+					});
+				});
+		});
+
+		const sut = supertest(app);
+
+		const value1 = 'value1';
+		const value2 = 'value2';
+
+		// ACT
+		sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
+			// ASSERT
+			assert.equal(res.body.value, value1);
+			done();
+		});
+
+		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
+			// ASSERT
+			assert.equal(res.body.value, value2);
+		});
+	});
+
+	if (process.versions.node.startsWith('8.')) {
+		require('./node8');
+	}
 });

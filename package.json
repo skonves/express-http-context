@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cover": "istanbul cover _mocha index.js -R ./tests --coverage",
-    "test": "mocha ./tests",
+    "test": "mocha ./tests/express-test-harness.js",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
