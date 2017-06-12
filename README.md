@@ -50,3 +50,10 @@ function createTodoItem(title, content, callback) {
 	db.insert({ title, content, userId: user.id }, callback);
 }
 ```
+
+## Troubleshooting
+To avoid weird behavior with express:
+1. Make sure you require `express-http-context` in the first row of your app. Some popular packages use async which breaks CLS.
+1. If you are using `body-parser` and context is getting lost, register it in express before you register `express-http-context`'s middleware.
+
+See [Issue #4](https://github.com/skonves/express-http-context/issues/4) for more context.  If you find any other weird behaviors, please feel free to open an issue.
