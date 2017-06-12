@@ -2,6 +2,7 @@
 [![coveralls](https://img.shields.io/coveralls/skonves/express-http-context.svg)](https://coveralls.io/github/skonves/express-http-context)
 [![npm](https://img.shields.io/npm/v/express-http-context.svg)](https://www.npmjs.com/package/express-http-context)
 [![npm](https://img.shields.io/npm/dm/express-http-context.svg)](https://www.npmjs.com/package/express-http-context)
+[![david](https://img.shields.io/david/skonves/express-http-context.svg)](https://david-dm.org/skonves/express-http-context)
 
 # Express HTTP Context
 Get and set request-scoped context anywhere.  This is just an unopinionated, idiomatic ExpressJS implementation of [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage).  It's a great place to store user state, claims from a JWT, request/correlation IDs, and any other request-scoped data.
