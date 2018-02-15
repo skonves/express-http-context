@@ -1,6 +1,6 @@
 {
   "name": "express-cls-hooked",
-  "version": "0.0.1",
+  "version": "0.3.6",
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
   "scripts": {
