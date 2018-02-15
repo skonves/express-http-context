@@ -1,6 +1,6 @@
 {
   "name": "express-cls-hooked",
-  "version": "0.3.4",
+  "version": "0.0.1",
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "request",
     "context"
   ],
-  "author": "Steve Konves",
+  "author": "Steve Konves (Amiram Korach)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/amiram/express-cls-hooked/issues"
