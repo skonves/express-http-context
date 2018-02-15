@@ -6,7 +6,7 @@ const supertest = require('supertest');
 
 const httpContext = require('../index');
 
-describe('express-http-context', function () {
+describe('express-cls-hooked', function () {
 	it('does not store or return context outside of request', function () {
 		// ARRANGE
 		const key = 'key';
