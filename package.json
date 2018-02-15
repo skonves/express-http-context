@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/skonves/express-http-context#readme",
   "dependencies": {
-    "continuation-local-storage": "^3.2.0"
+    "cls-hooked": "^4.2.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
