@@ -1,5 +1,5 @@
 {
-  "name": "express-http-context",
+  "name": "express-cls-hooked",
   "version": "0.3.4",
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skonves/express-http-context.git"
+    "url": "git+https://github.com/amiram/express-cls-hooked.git"
   },
   "keywords": [
     "express",
@@ -21,9 +21,9 @@
   "author": "Steve Konves",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/skonves/express-http-context/issues"
+    "url": "https://github.com/amiram/express-cls-hooked/issues"
   },
-  "homepage": "https://github.com/skonves/express-http-context#readme",
+  "homepage": "https://github.com/amiram/express-cls-hooked#readme",
   "dependencies": {
     "cls-hooked": "^4.2.2"
   },
