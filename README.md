@@ -6,7 +6,7 @@
 
 # Express HTTP Context with async_hooks
 
-**This package is forked from [express-http-context](https://github.com/skonves/express-http-context). It is using [cls-hooked](https://github.com/Jeff-Lewis/cls-hooked) which is a fork of [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage) that uses async_hooks API, so context is preserved even over async/await in node 8+.**  
+**This package is forked from [express-http-context](https://github.com/skonves/express-http-context). It is using [cls-hooked](https://github.com/Jeff-Lewis/cls-hooked) which is a fork of [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage) that uses async_hooks API, so context is preserved even over async/await in node 8+. If you're using node version < 8, just use the original [express-http-context](https://github.com/skonves/express-http-context).**  
 
 Get and set request-scoped context anywhere.  This is just an unopinionated, idiomatic ExpressJS implementation of [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage).  It's a great place to store user state, claims from a JWT, request/correlation IDs, and any other request-scoped data.
 
