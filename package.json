@@ -21,7 +21,11 @@
     "request",
     "context"
   ],
-  "author": "Steve Konves (Amiram Korach)",
+  "author": "Steve Konves",
+  "contributors": [
+    "Steve Konves",
+    "Amiram Korach"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/skonves/express-http-context/issues"
