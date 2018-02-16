@@ -59,3 +59,7 @@ To avoid weird behavior with express:
 1. If you are using `body-parser` and context is getting lost, register it in express before you register `express-http-context`'s middleware.
 
 See [Issue #4](https://github.com/skonves/express-http-context/issues/4) for more context.  If you find any other weird behaviors, please feel free to open an issue.
+
+## Contributors
+Steve Konves (@skonves)
+Amiram Korach (@amiram)
