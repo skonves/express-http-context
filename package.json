@@ -3,6 +3,9 @@
   "version": "0.3.4",
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
+  "engines": {
+    "node": "<8.0.0"
+  },
   "scripts": {
     "cover": "istanbul cover _mocha index.js -R ./tests --coverage",
     "test": "mocha ./tests",
