@@ -7,7 +7,7 @@ const bluebird = require('bluebird');
 
 const httpContext = require('../index');
 
-describe('express-cls-hooked', function () {
+describe('express-http-context', function () {
 	it('does not store or return context outside of request', function () {
 		// ARRANGE
 		const key = 'key';
