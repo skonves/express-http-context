@@ -7,11 +7,10 @@
 # Express HTTP Context
 Get and set request-scoped context anywhere.  This is just an unopinionated, idiomatic ExpressJS implementation of [cls-hooked](https://github.com/Jeff-Lewis/cls-hooked) (forked from [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage)).  It's a great place to store user state, claims from a JWT, request/correlation IDs, and any other request-scoped data. Context is preserved even over async/await (in node 8+).
 
-(Note: For node v4-7, use the legacy 0.x.x package version.)
-
 ## How to use it
 
-Install: `npm install --save express-http-context`
+Install: `npm install --save express-http-context`  
+(Note: For node v4-7, use the legacy version: `npm install --save express-http-context@<1.0.0`)
 
 Use the middleware.  The earlier the better; you won't have access to the context from any middleware "used" before this one.
 
