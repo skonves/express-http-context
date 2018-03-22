@@ -24,7 +24,7 @@ app.use(httpContext.middleware);
 // all code from here on has access to the same context for each request
 ```
 
-Set values based on the incomming request:
+Set values based on the incoming request:
 
 ``` js
 // Example authorization middleware
