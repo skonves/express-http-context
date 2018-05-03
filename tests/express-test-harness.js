@@ -19,7 +19,7 @@ describe('express-http-context', function () {
 		assert.notOk(result);
 	});
 
-	it('maintains unique value across concurrent requests', function (done) {
+	it('maintains unique value across concurrent requests with callbacks', function (done) {
 		// ARRANGE
 		const app = express();
 
@@ -57,6 +57,48 @@ describe('express-http-context', function () {
 		});
 	});
 
+	it('maintains unique value across concurrent requests with native promises', function (done) {
+    // ARRANGE
+    const app = express();
+
+    app.use(httpContext.middleware);
+
+    app.get('/test', (req, res) => {
+			const delay = new Number(req.query.delay);
+      const valueFromRequest = req.query.value;
+
+      httpContext.set('value', valueFromRequest);
+
+      const doJob = () => {
+        new Promise(resolve => setTimeout(resolve, delay)).then(() => {
+					const valueFromContext = httpContext.get('value');
+					res.status(200).json({
+						value: valueFromContext
+					});
+				});
+      };
+
+      doJob();
+    });
+
+    const sut = supertest(app);
+
+    const value1 = 'value1';
+    const value2 = 'value2';
+
+    // ACT
+    sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
+      // ASSERT
+      assert.equal(res.body.value, value1);
+      done();
+    });
+
+    sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
+      // ASSERT
+      assert.equal(res.body.value, value2);
+    });
+  });
+
   it('maintains unique value across concurrent requests with async/await', function (done) {
     // ARRANGE
     const app = express();
@@ -64,7 +106,7 @@ describe('express-http-context', function () {
     app.use(httpContext.middleware);
 
     app.get('/test', (req, res) => {
-      const delay = new Number(req.query.delay);
+			const delay = new Number(req.query.delay);
       const valueFromRequest = req.query.value;
 
       httpContext.set('value', valueFromRequest);
@@ -90,12 +132,12 @@ describe('express-http-context', function () {
       // ASSERT
       assert.equal(res.body.value, value1);
       done();
-    });
-
-    sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
-      // ASSERT
-      assert.equal(res.body.value, value2);
-    });
+		});
+		
+		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
+			// ASSERT
+			assert.equal(res.body.value, value2);
+		});
   });
 
   it('returns undefined when key is not found', function (done) {
