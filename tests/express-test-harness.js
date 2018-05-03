@@ -3,7 +3,6 @@
 const assert = require('chai').assert;
 const express = require('express');
 const supertest = require('supertest');
-const bluebird = require('bluebird');
 
 const httpContext = require('../index');
 
@@ -71,7 +70,7 @@ describe('express-http-context', function () {
       httpContext.set('value', valueFromRequest);
 
       const doJob = async () => {
-        await bluebird.delay(delay);
+        await new Promise(resolve => setTimeout(resolve, delay));
         const valueFromContext = httpContext.get('value');
         res.status(200).json({
           value: valueFromContext
