@@ -35,7 +35,6 @@
     "cls-hooked": "^4.2.2"
   },
   "devDependencies": {
-    "bluebird": "^3.5.1",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "express": "^4.16.2",
