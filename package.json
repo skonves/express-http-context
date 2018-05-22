@@ -37,7 +37,7 @@
   "devDependencies": {
     "bluebird": "^3.5.1",
     "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.1",
     "express": "^4.16.2",
     "istanbul": "^0.4.5",
     "mocha": "^5.0.1",
