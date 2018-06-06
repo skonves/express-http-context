@@ -4,7 +4,7 @@
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.0.0 - <10.0.0 || >=10.4.0"
   },
   "scripts": {
     "cover": "istanbul cover _mocha index.js -R ./tests --coverage",
