@@ -58,7 +58,7 @@ To avoid weird behavior with express:
 1. If you are using `body-parser` and context is getting lost, register it in express before you register `express-http-context`'s middleware.
 
 For users of Node 10
-1. Node 10.0.x - 10.3.x are not supported.  V8 version 6.6 introduced a bug breaks async_hooks during async/await.  Node 10.4.x uses V8 v6.7 in which the bug is fixed.  See: https://github.com/nodejs/node/issues/20274.
+1. Node 10.0.x - 10.3.x are not supported.  V8 version 6.6 introduced a bug that breaks async_hooks during async/await.  Node 10.4.x uses V8 v6.7 in which the bug is fixed.  See: https://github.com/nodejs/node/issues/20274.
 
 See [Issue #4](https://github.com/skonves/express-http-context/issues/4) for more context.  If you find any other weird behaviors, please feel free to open an issue.
 
