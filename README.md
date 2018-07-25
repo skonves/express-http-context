@@ -12,14 +12,20 @@ Get and set request-scoped context anywhere.  This is just an unopinionated, idi
 Install: `npm install --save express-http-context`  
 (Note: For node v4-7, use the legacy version: `npm install --save express-http-context@<1.0.0`)
 
-Use the middleware.  The earlier the better; you won't have access to the context from any middleware "used" before this one.
+Use the middleware immediately before the first middleware that needs to have access to the context.
+You won't have access to the context in any middleware "used" before this one.
+
+Note that some popular middlewares (such as body-parser, express-jwt) may cause context to get lost.
+To workaround such issues, you are advised to use any third party middleware that does NOT need the context
+BEFORE you use this middleware.
 
 ``` js
 var express = require('express');
 var httpContext = require('express-http-context');
 
 var app = express();
-
+// Use any third party middleware that does not need access to the context here, e.g. 
+// app.use(some3rdParty.middleware);
 app.use(httpContext.middleware);
 // all code from here on has access to the same context for each request
 ```
@@ -55,7 +61,6 @@ function createTodoItem(title, content, callback) {
 ## Troubleshooting
 To avoid weird behavior with express:
 1. Make sure you require `express-http-context` in the first row of your app. Some popular packages use async which breaks CLS.
-1. If you are using `body-parser` and context is getting lost, register it in express before you register `express-http-context`'s middleware.
 
 For users of Node 10
 1. Node 10.0.x - 10.3.x are not supported.  V8 version 6.6 introduced a bug that breaks async_hooks during async/await.  Node 10.4.x uses V8 v6.7 in which the bug is fixed.  See: https://github.com/nodejs/node/issues/20274.
@@ -65,3 +70,4 @@ See [Issue #4](https://github.com/skonves/express-http-context/issues/4) for mor
 ## Contributors
 Steve Konves (@skonves)
 Amiram Korach (@amiram)
+Yoni Rabinovitch (@yonirab)
