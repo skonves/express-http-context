@@ -68,6 +68,8 @@ For users of Node 10
 See [Issue #4](https://github.com/skonves/express-http-context/issues/4) for more context.  If you find any other weird behaviors, please feel free to open an issue.
 
 ## Contributors
-Steve Konves (@skonves)
-Amiram Korach (@amiram)
-Yoni Rabinovitch (@yonirab)
+* Steve Konves (@skonves)
+* Amiram Korach (@amiram)
+* Yoni Rabinovitch (@yonirab)
+
+Interesting in contributing? Take a look at the [Contributing Guidlines](/CONTRIBUTING.md)
