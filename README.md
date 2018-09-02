@@ -58,6 +58,11 @@ function createTodoItem(title, content, callback) {
 }
 ```
 
+You can access cls namespace directly as (it may be useful if you want to apply some patch to it, for example https://github.com/TimBeyer/cls-bluebird):
+``` js
+var ns = require('express-http-context').ns;
+```
+
 ## Troubleshooting
 To avoid weird behavior with express:
 1. Make sure you require `express-http-context` in the first row of your app. Some popular packages use async which breaks CLS.
