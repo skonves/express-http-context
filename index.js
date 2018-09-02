@@ -3,10 +3,10 @@
 const cls = require('cls-hooked');
 
 const nsid = 'a6a29a6f-6747-4b5f-b99f-07ee96e32f88';
+const ns = cls.createNamespace(nsid);
 
 /** Express.js middleware that is responsible for initializing the context for each request. */
 function middleware(req, res, next) {
-	const ns = cls.getNamespace(nsid) || cls.createNamespace(nsid);
 	ns.run(() => next());
 }
 
@@ -15,7 +15,6 @@ function middleware(req, res, next) {
  * @param {string} key
  */
 function get(key) {
-	const ns = cls.getNamespace(nsid);
 	if (ns && ns.active) {
 		return ns.get(key);
 	}
@@ -27,7 +26,6 @@ function get(key) {
  * @param {*} value 
  */
 function set(key, value) {
-	const ns = cls.getNamespace(nsid);
 	if (ns && ns.active) {
 		return ns.set(key, value);
 	}
@@ -36,5 +34,6 @@ function set(key, value) {
 module.exports = {
 	middleware,
 	get: get,
-	set: set
-}
+	set: set,
+	ns: ns
+};
