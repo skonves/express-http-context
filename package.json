@@ -35,6 +35,8 @@
     "cls-hooked": "^4.2.2"
   },
   "devDependencies": {
+    "@types/cls-hooked": "^4.2.1",
+    "@types/express": "^4.16.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "express": "^4.16.2",
