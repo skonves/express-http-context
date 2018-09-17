@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { Namespace } from 'cls-hooked';
 
 /** Express.js middleware that is responsible for initializing the context for each request. */
 export declare function middleware(
@@ -16,3 +17,8 @@ export declare function get(key: string): any;
  * Adds a value to the context by key.  If the key already exists, its value will be overwritten.  No value will persist if the context has not yet been initialized.
  */
 export declare function set(key: string, value: any): void;
+
+/**
+ * Gets the underlying continuation namespace.
+ */
+export declare const ns: Namespace;
