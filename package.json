@@ -1,6 +1,6 @@
 {
   "name": "express-http-context",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
   "browser": "browser.js",
