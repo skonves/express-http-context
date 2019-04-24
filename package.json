@@ -34,10 +34,10 @@
   "homepage": "https://github.com/skonves/express-http-context#readme",
   "dependencies": {
     "@types/cls-hooked": "^4.2.1",
+    "@types/express": "^4.16.0",
     "cls-hooked": "^4.2.2"
   },
   "devDependencies": {
-    "@types/express": "^4.16.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "express": "^4.16.2",
