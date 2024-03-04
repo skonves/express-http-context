@@ -3,7 +3,7 @@
 const cls = require('cls-hooked');
 
 const nsid = 'a6a29a6f-6747-4b5f-b99f-07ee96e32f88';
-const ns = cls.createNamespace(nsid);
+const ns = cls.getNamespace(nsid) ?? cls.createNamespace(nsid);
 
 /** Express.js middleware that is responsible for initializing the context for each request. */
 function middleware(req, res, next) {
