@@ -38,5 +38,6 @@ module.exports = {
 	middleware,
 	get: get,
 	set: set,
+	getNs: () => cls.getNamespace(nsid),
 	ns: ns
 };
