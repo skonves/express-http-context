@@ -21,4 +21,9 @@ export declare function set(key: string, value: any): void;
 /**
  * Gets the underlying continuation namespace.
  */
+export declare function getNs(): Namespace;
+
+/**
+ * Gets the underlying continuation namespace.
+ */
 export declare const ns: Namespace;
