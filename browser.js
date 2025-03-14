@@ -8,5 +8,4 @@ module.exports = {
   set: function (key, value) {
     // noop
   },
-  ns: null,
 };
