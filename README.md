@@ -78,5 +78,6 @@ See [Issue #4](https://github.com/skonves/express-http-context/issues/4) for mor
 * Yoni Rabinovitch (@yonirab)
 * DontRelaX (@dontrelax)
 * William Durand (@willdurand)
+* Kristopher Morris (@beeduck)
 
 Interesting in contributing? Take a look at the [Contributing Guidlines](/CONTRIBUTING.md)
