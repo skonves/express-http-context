@@ -11,10 +11,11 @@ describe('express-http-context', function () {
 		const key = 'key';
 
 		// ACT
-		httpContext.set(key, 'value');
+		const storedValue = httpContext.set(key, 'value');
 		const result = httpContext.get(key);
 
 		// ASSERT
+		expect(storedValue).toBeUndefined();
 		expect(result).toBeFalsy();
 	});
 
@@ -28,12 +29,13 @@ describe('express-http-context', function () {
 			const delay = new Number(req.query.delay);
 			const valueFromRequest = req.query.value;
 
-			httpContext.set('value', valueFromRequest);
+			const setReturnValue = httpContext.set('value', valueFromRequest);
 
 			setTimeout(() => {
 				const valueFromContext = httpContext.get('value');
 				res.status(200).json({
-					value: valueFromContext
+					value: valueFromContext,
+					setReturnValue,
 				});
 			}, delay);
 		});
@@ -47,12 +49,14 @@ describe('express-http-context', function () {
 		sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
 			// ASSERT
 			expect(res.body.value).toBe(value1);
+			expect(res.body.setReturnValue).toBe(value1);
 			done();
 		});
 
 		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
 			// ASSERT
 			expect(res.body.value).toBe(value2);
+			expect(res.body.setReturnValue).toBe(value2);
 		});
 	});
 
@@ -66,13 +70,14 @@ describe('express-http-context', function () {
 			const delay = new Number(req.query.delay);
       const valueFromRequest = req.query.value;
 
-      httpContext.set('value', valueFromRequest);
+      const setReturnValue = httpContext.set('value', valueFromRequest);
 
       const doJob = () => {
         new Promise(resolve => setTimeout(resolve, delay)).then(() => {
 					const valueFromContext = httpContext.get('value');
 					res.status(200).json({
-						value: valueFromContext
+						value: valueFromContext,
+						setReturnValue,
 					});
 				});
       };
@@ -89,12 +94,14 @@ describe('express-http-context', function () {
     sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
       // ASSERT
 			expect(res.body.value).toBe(value1);
+			expect(res.body.setReturnValue).toBe(value1);
       done();
     });
 
     sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
       // ASSERT
 			expect(res.body.value).toBe(value2);
+			expect(res.body.setReturnValue).toBe(value2);
     });
   });
 
@@ -132,7 +139,7 @@ describe('express-http-context', function () {
 			expect(res.body.value).toBe(value1);
       done();
 		});
-		
+
 		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
 			// ASSERT
 			expect(res.body.value).toBe(value2);

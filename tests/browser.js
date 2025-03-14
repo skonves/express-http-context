@@ -3,10 +3,6 @@
 const httpContext = require('../browser');
 
 describe('express-http-context/Browser API', function () {
-  it('returns a `null` namespace', () => {
-    expect(httpContext.ns).toBeNull();
-  });
-
   it('returns a `null` value when get() is called', () => {
     expect(httpContext.get('key')).toBeNull();
   });

@@ -1,13 +1,11 @@
 'use strict';
 
-const cls = require('cls-hooked');
-
-const nsid = 'a6a29a6f-6747-4b5f-b99f-07ee96e32f88';
-const ns = cls.createNamespace(nsid);
+const { AsyncLocalStorage } = require('async_hooks');
+const asyncLocalStorage = new AsyncLocalStorage();
 
 /** Express.js middleware that is responsible for initializing the context for each request. */
 function middleware(req, res, next) {
-	ns.run(() => next());
+	asyncLocalStorage.run(new Map(), next);
 }
 
 /**
@@ -15,25 +13,24 @@ function middleware(req, res, next) {
  * @param {string} key
  */
 function get(key) {
-	if (ns && ns.active) {
-		return ns.get(key);
-	}
+	return asyncLocalStorage.getStore()?.get(key);
 }
 
 /**
  * Adds a value to the context by key.  If the key already exists, its value will be overwritten.  No value will persist if the context has not yet been initialized.
- * @param {string} key 
- * @param {*} value 
+ * @param {string} key
+ * @param {*} value
  */
 function set(key, value) {
-	if (ns && ns.active) {
-		return ns.set(key, value);
+	if (asyncLocalStorage.getStore()) {
+		asyncLocalStorage.getStore()?.set(key, value);
+		return value;
 	}
+	return undefined;
 }
 
 module.exports = {
 	middleware,
 	get: get,
-	set: set,
-	ns: ns
+	set: set
 };
