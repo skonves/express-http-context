@@ -1,16 +1,14 @@
 'use strict'
 
-const assert = require('chai').assert;
-
 const httpContext = require('../browser');
 
 describe('express-http-context/Browser API', function () {
   it('returns a `null` namespace', () => {
-    assert.equal(httpContext.ns, null);
+    expect(httpContext.ns).toBeNull();
   });
 
   it('returns a `null` value when get() is called', () => {
-    assert.equal(httpContext.get('key'), null);
+    expect(httpContext.get('key')).toBeNull();
   });
 
   it('does not do anything when set() is called', () => {
@@ -18,8 +16,8 @@ describe('express-http-context/Browser API', function () {
   });
 
   it('throws when middleware() is called', () => {
-    assert.throws(() => {
+    expect(() => {
       httpContext.middleware();
-    }, /from the browser code/);
+    }).toThrow(/from the browser code/);
   });
 });
