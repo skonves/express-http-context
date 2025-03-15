@@ -36,8 +36,8 @@
     "cls-hooked": "^4.2.2"
   },
   "devDependencies": {
-    "express": "^4.16.2",
+    "express": "^4.21.2",
     "jest": "^29.7.0",
-    "supertest": "^3.0.0"
+    "supertest": "^7.0.0"
   }
 }
