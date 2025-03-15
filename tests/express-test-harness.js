@@ -1,6 +1,5 @@
 'use strict'
 
-const assert = require('chai').assert;
 const express = require('express');
 const supertest = require('supertest');
 
@@ -16,7 +15,7 @@ describe('express-http-context', function () {
 		const result = httpContext.get(key);
 
 		// ASSERT
-		assert.notOk(result);
+		expect(result).toBeFalsy();
 	});
 
 	it('maintains unique value across concurrent requests with callbacks', function (done) {
@@ -47,13 +46,13 @@ describe('express-http-context', function () {
 		// ACT
 		sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
 			// ASSERT
-			assert.equal(res.body.value, value1);
+			expect(res.body.value).toBe(value1);
 			done();
 		});
 
 		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
 			// ASSERT
-			assert.equal(res.body.value, value2);
+			expect(res.body.value).toBe(value2);
 		});
 	});
 
@@ -89,13 +88,13 @@ describe('express-http-context', function () {
     // ACT
     sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
       // ASSERT
-      assert.equal(res.body.value, value1);
+			expect(res.body.value).toBe(value1);
       done();
     });
 
     sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
       // ASSERT
-      assert.equal(res.body.value, value2);
+			expect(res.body.value).toBe(value2);
     });
   });
 
@@ -130,13 +129,13 @@ describe('express-http-context', function () {
     // ACT
     sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
       // ASSERT
-      assert.equal(res.body.value, value1);
+			expect(res.body.value).toBe(value1);
       done();
 		});
 		
 		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
 			// ASSERT
-			assert.equal(res.body.value, value2);
+			expect(res.body.value).toBe(value2);
 		});
   });
 
@@ -162,7 +161,7 @@ describe('express-http-context', function () {
 		// ACT
 		sut.get('/test').end((err, res) => {
 			// ASSERT
-			assert.equal(res.body.typeOfValueFromContext, 'undefined');
+			expect(res.body.typeOfValueFromContext).toBe('undefined');
 			done();
 		});
 	});
