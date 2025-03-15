@@ -8,8 +8,7 @@
     "node": ">=8.0.0 <10.0.0 || >=10.4.0"
   },
   "scripts": {
-    "test": "jest",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -37,7 +36,6 @@
     "cls-hooked": "^4.2.2"
   },
   "devDependencies": {
-    "coveralls": "^3.0.1",
     "express": "^4.16.2",
     "jest": "^29.7.0",
     "supertest": "^3.0.0"

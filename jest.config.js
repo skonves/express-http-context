@@ -4,6 +4,8 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.js',
+    '!**/*.config.js',
+    '!**/coverage/**',
     '!**/node_modules/**',
     '!**/tests/**',
   ],
