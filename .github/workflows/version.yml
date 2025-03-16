@@ -1,0 +1,56 @@
+name: Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      newversion:
+        description: "npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]"
+        required: true
+      preid:
+        description: 'The "prerelease identifier" to use as a prefix for the "prerelease" part of a semver.'
+        required: false
+
+jobs:
+  npm-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare git
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        shell: bash
+      - name: Bump version
+        run: |
+          npm version ${{ github.event.inputs.newversion }} --preid ${{ github.event.inputs.preid }} --git-tag-version false
+          if [[ -z $(git ls-remote origin $(jq -r .version < package.json)) ]]; then echo "Created new version $(jq -r .version < package.json)"; else echo "Tag $(jq -r .version < package.json) already exists!" && exit 1 ; fi
+          git checkout -b bump-version-$(jq -r .version < package.json)
+        shell: bash
+      - name: Commit
+        run: "git commit -am \"$(jq -r .version < package.json)\n\nCo-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>\""
+        shell: bash
+      - name: Push
+        run: git push origin $(git branch --show-current)
+        shell: bash
+      - name: Pull request
+        run: |
+          gh pr create --base ${{ github.ref_name }} --title "Bump version to $(jq -r .version < package.json)" --body "### If you merge this PR
+
+          - The package version will be updated to \`$(jq -r .version < package.json)\` on branch \`${GITHUB_REF##*/}\`.
+          - The git tag \`v$(jq -r .version < package.json)\` will be created in this repository.
+          - \`$(jq -r .name < package.json)@$(jq -r .version < package.json)\` will be published to NPM.
+          $(if [[ $(jq .version < package.json) =~ [0-9]+\.[0-9]+\.[0-9]+\-([^\.]+) ]]; then echo "  - dist-tag \`${BASH_REMATCH[1]}\` will point to version \`$(jq -r .version < package.json)\`
+            - dist-tag \`latest\` will remain unchanged
+            - [Learn more about NPM dist-tags](https://docs.npmjs.com/cli/commands/npm-dist-tag)"; fi)
+
+          #### ⚠️ NOTICE ⚠️
+
+          The published package will contain all changes on branch \`${GITHUB_REF##*/}\` at the time this PR is merged _even if they were merged after this PR was created_.
+
+          ### If you close this PR
+
+          - The version will not change and nothing will be published.
+          - Future attempts to create the same version will fail until this branch is deleted." --assignee "${GITHUB_ACTOR}"
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
