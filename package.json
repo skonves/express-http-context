@@ -30,6 +30,7 @@
     "url": "https://github.com/skonves/express-http-context/issues"
   },
   "homepage": "https://github.com/skonves/express-http-context#readme",
+  "funding": "https://github.com/skonves/express-http-context?sponsor=1",
   "dependencies": {
     "@types/cls-hooked": "^4.2.1",
     "@types/express": "^4.16.0",
