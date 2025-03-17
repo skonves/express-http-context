@@ -2,15 +2,13 @@
 [![coveralls](https://img.shields.io/coveralls/skonves/express-http-context.svg)](https://coveralls.io/github/skonves/express-http-context)
 [![npm](https://img.shields.io/npm/v/express-http-context.svg)](https://www.npmjs.com/package/express-http-context)
 [![npm](https://img.shields.io/npm/dm/express-http-context.svg)](https://www.npmjs.com/package/express-http-context)
-[![david](https://img.shields.io/david/skonves/express-http-context.svg)](https://david-dm.org/skonves/express-http-context)
 
 # Express HTTP Context
-Get and set request-scoped context anywhere.  This is just an unopinionated, idiomatic ExpressJS implementation of [cls-hooked](https://github.com/Jeff-Lewis/cls-hooked) (forked from [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage)).  It's a great place to store user state, claims from a JWT, request/correlation IDs, and any other request-scoped data. Context is preserved even over async/await (in node 8+).
+Get and set request-scoped context anywhere.  This is just an unopinionated, idiomatic ExpressJS implementation of [Node AsyncLocalStorage](https://nodejs.org/api/async_context.html#class-asynclocalstorage).  It's a great place to store user state, claims from a JWT, request/correlation IDs, and any other request-scoped data.
 
 ## How to use it
 
 Install: `npm install --save express-http-context`  
-(Note: For node v4-7, use the legacy version: `npm install --save express-http-context@<1.0.0`)
 
 Use the middleware immediately before the first middleware that needs to have access to the context.
 You won't have access to the context in any middleware "used" before this one.
@@ -58,10 +56,10 @@ function createTodoItem(title, content, callback) {
 }
 ```
 
-You can access cls namespace directly as (it may be useful if you want to apply some patch to it, for example https://github.com/TimBeyer/cls-bluebird):
-``` js
-var ns = require('express-http-context').ns;
-```
+## Legacy versions
+
+* For Node <7: `npm install --save express-http-context@0`
+* For Node >=8 <12: `npm install --save express-http-context@1`
 
 ## Troubleshooting
 To avoid weird behavior with express:
