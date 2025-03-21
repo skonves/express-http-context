@@ -15,9 +15,10 @@ function middleware(req, res, next) {
  * @param {string} key
  */
 function get(key) {
-	if (ns && ns.active) {
-		return ns.get(key);
-	}
+    if (ns && ns.active) {
+        return ns.get(key) || (ns ? ns.get(key) : undefined);
+    }
+    return undefined; // Return undefined if ns is not active
 }
 
 /**
