@@ -36,5 +36,6 @@ function set(key, value) {
 module.exports = {
 	middleware,
 	get: get,
-	set: set
+	set: set,
+	asyncLocalStorage
 };
