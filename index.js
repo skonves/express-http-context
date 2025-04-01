@@ -5,7 +5,11 @@ const asyncLocalStorage = new AsyncLocalStorage();
 
 /** Express.js middleware that is responsible for initializing the context for each request. */
 function middleware(req, res, next) {
-	asyncLocalStorage.run(new Map(), next);
+  if (!asyncLocalStorage.getStore()) {
+    asyncLocalStorage.run(new Map(), () => next());
+  } else {
+    next();
+  }
 }
 
 /**

@@ -146,6 +146,56 @@ describe('express-http-context', function () {
 		});
   });
 
+	it('maintains context even if middleware is used multiple times', function (done) {
+    // ARRANGE
+    const app = express();
+
+    app.use(httpContext.middleware);
+		app.use((req, res, next) => {
+			httpContext.set('key', 'middlware value');
+			next();
+		});
+    app.use(httpContext.middleware);
+
+    app.get('/test', (req, res) => {
+			const delay = new Number(req.query.delay);
+      const valueFromRequest = req.query.value;
+
+      httpContext.set('value', valueFromRequest);
+
+      const doJob = async () => {
+        await new Promise(resolve => setTimeout(resolve, delay));
+        const valueFromContext = httpContext.get('value');
+				const valueFromKey = httpContext.get('key');
+        res.status(200).json({
+          value: valueFromContext,
+					otherValue: valueFromKey
+        });
+      };
+
+      doJob();
+    });
+
+    const sut = supertest(app);
+
+    const value1 = 'value1';
+    const value2 = 'value2';
+
+    // ACT
+    sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
+      // ASSERT
+			expect(res.body.value).toBe(value1);
+			expect(res.body.otherValue).toBe('middlware value');
+      done();
+		});
+
+		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
+			// ASSERT
+			expect(res.body.value).toBe(value2);
+			expect(res.body.otherValue).toBe('middlware value');
+		});
+  });
+
   it('returns undefined when key is not found', function (done) {
 		// ARRANGE
 		const app = express();
