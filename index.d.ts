@@ -1,3 +1,5 @@
+import { AsyncLocalStorage } from 'async_hooks';
+
 /** Express.js middleware that is responsible for initializing the context for each request. */
 export declare function middleware(
   req: any,
@@ -14,3 +16,8 @@ export declare function get(key: string): any;
  * Adds a value to the context by key.  If the key already exists, its value will be overwritten.  No value will persist if the context has not yet been initialized.
  */
 export declare function set(key: string, value: any): void;
+
+/**
+ * Gets the instance of AsyncLocalStorage that is used to store the context for each request.
+ */
+export declare const asyncLocalStorage: AsyncLocalStorage<Map<string, unknown>>;
