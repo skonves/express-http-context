@@ -152,7 +152,7 @@ describe('express-http-context', function () {
 
     app.use(httpContext.middleware);
 		app.use((req, res, next) => {
-			httpContext.set('key', 'middlware value');
+			httpContext.set('key', 'middleware value');
 			next();
 		});
     app.use(httpContext.middleware);
@@ -185,14 +185,14 @@ describe('express-http-context', function () {
     sut.get('/test').query({ delay: 100, value: value1 }).end((err, res) => {
       // ASSERT
 			expect(res.body.value).toBe(value1);
-			expect(res.body.otherValue).toBe('middlware value');
+			expect(res.body.otherValue).toBe('middleware value');
       done();
 		});
 
 		sut.get('/test').query({ delay: 50, value: value2 }).end((err, res) => {
 			// ASSERT
 			expect(res.body.value).toBe(value2);
-			expect(res.body.otherValue).toBe('middlware value');
+			expect(res.body.otherValue).toBe('middleware value');
 		});
   });
 
