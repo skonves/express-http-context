@@ -32,6 +32,7 @@
   "homepage": "https://github.com/skonves/express-http-context#readme",
   "funding": "https://github.com/skonves/express-http-context?sponsor=1",
   "devDependencies": {
+    "@oliverlockwood/express-http-context-intermediate-library": "0.0.5-original-library",
     "express": "^4.21.2",
     "jest": "^29.7.0",
     "supertest": "^7.0.0"
