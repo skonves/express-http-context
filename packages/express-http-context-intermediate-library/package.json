@@ -1,0 +1,36 @@
+{
+  "name": "@oliverlockwood/express-http-context-intermediate-library",
+  "version": "0.0.5-original-library",
+  "description": "An intermediate library, which makes use of express-http-context, to demonstrate existence (or otherwise!) of a bug",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliverlockwood/express-http-context-intermediate-library.git"
+  },
+  "keywords": [
+    "express",
+    "http",
+    "request",
+    "context"
+  ],
+  "author": "Oliver Lockwood",
+  "contributors": [
+    "Oliver Lockwood (@oliverlockwood)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oliverlockwood/express-http-context-intermediate-library/issues"
+  },
+  "homepage": "https://github.com/oliverlockwood/express-http-context-intermediate-library#readme",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "nanoid": "3.3.11"
+  }
+}
