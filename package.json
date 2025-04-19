@@ -8,6 +8,7 @@
     "node": ">=14.8.0"
   },
   "scripts": {
+    "pretest": "cp index.js packages/express-http-context-intermediate-library/express-http-context.js",
     "test": "jest"
   },
   "repository": {

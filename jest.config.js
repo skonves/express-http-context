@@ -7,6 +7,7 @@ module.exports = {
     '!**/*.config.js',
     '!**/coverage/**',
     '!**/node_modules/**',
+    '!**/packages/**',
     '!**/tests/**',
   ],
   coverageDirectory: 'coverage',

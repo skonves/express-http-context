@@ -37,3 +37,7 @@ jspm_packages
 .node_repl_history
 
 *.tgz
+
+# This is a local copy of the express-http-context library
+# It is used to avoid a circular dependency on the express-http-context library
+packages/express-http-context-intermediate-library/express-http-context.js
