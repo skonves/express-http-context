@@ -260,20 +260,9 @@ describe('express-http-context', function () {
 		expect(response1.header[REQUEST_ID_IN_RESPONSE_HTTP_HEADER_NAME]?.length).toBe(21);
 		expect(response2.header[REQUEST_ID_IN_RESPONSE_HTTP_HEADER_NAME]?.length).toBe(21);
 
-		// This is the specific example I had flagged in the Github issues (#26, #78) - where
-		// setting something into the httpContext in a common library, but it's
-		// unusable from within the application code.
 		expect(response1.body.requestId).toBe(response1.header[REQUEST_ID_IN_RESPONSE_HTTP_HEADER_NAME]);
 		expect(response2.body.requestId).toBe(response2.header[REQUEST_ID_IN_RESPONSE_HTTP_HEADER_NAME]);
 
-		// These operations also fail, I suspect, because neither of the set/get
-		// functions are usable, because the directly imported AsyncLocalStorage has
-		// not been initialised by a call to `app.use(middleware)` within our code
-		// here.  Effectively this is another manifestation of the same bug -
-		// showing that although the middleware *has* already been initialised in
-		// Express request handler chain, it is not usable because the
-		// AsyncLocalStorage context is not identical for all usages of the
-		// `express-http-context` library code.
 		expect(response1.body.valueFromContext).toBe('value1');
 		expect(response2.body.valueFromContext).toBe('value2');
 	});
