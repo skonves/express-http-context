@@ -4,6 +4,7 @@
   "description": "Get and set request-scoped context anywhere",
   "main": "index.js",
   "browser": "browser.js",
+  "sideEffects": true,
   "engines": {
     "node": ">=14.8.0"
   },

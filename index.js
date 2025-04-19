@@ -1,10 +1,16 @@
 'use strict';
 
 const { AsyncLocalStorage } = require('async_hooks');
-const asyncLocalStorage = new AsyncLocalStorage();
+
+const STORAGE_KEY = Symbol.for(
+	'skonves/express-http-context/asyncLocalStorage',
+);
+
+globalThis[STORAGE_KEY] = globalThis[STORAGE_KEY] ?? new AsyncLocalStorage();
 
 /** Express.js middleware that is responsible for initializing the context for each request. */
 function middleware(req, res, next) {
+  const asyncLocalStorage = globalThis[STORAGE_KEY];
   if (!asyncLocalStorage.getStore()) {
     asyncLocalStorage.run(new Map(), () => next());
   } else {
@@ -17,7 +23,7 @@ function middleware(req, res, next) {
  * @param {string} key
  */
 function get(key) {
-	return asyncLocalStorage.getStore()?.get(key);
+	return globalThis[STORAGE_KEY].getStore()?.get(key);
 }
 
 /**
@@ -26,6 +32,7 @@ function get(key) {
  * @param {*} value
  */
 function set(key, value) {
+  const asyncLocalStorage = globalThis[STORAGE_KEY];
 	if (asyncLocalStorage.getStore()) {
 		asyncLocalStorage.getStore()?.set(key, value);
 		return value;
@@ -37,5 +44,5 @@ module.exports = {
 	middleware,
 	get: get,
 	set: set,
-	asyncLocalStorage
+	asyncLocalStorage: globalThis[STORAGE_KEY],
 };
