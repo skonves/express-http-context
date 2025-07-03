@@ -5,6 +5,7 @@
 Security:
 
 - Run tests on Express 5
+- Update dev dependencies to address known CVEs
 
 ## 2.0.1 (2025-04-19)
 
