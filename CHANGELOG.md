@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.0.2 (unreleased)
+
+Security:
+
+- Run tests on Express 5
+
 ## 2.0.1 (2025-04-19)
 
 Fix:
